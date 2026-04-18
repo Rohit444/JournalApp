@@ -171,6 +171,10 @@ http://localhost:9000/projects
 
 ---
 
+## Sonar cloud URL:
+To access Sonar cloud you need to just run the github action file and rest it will automatically detect and produce report here:
+`https://sonarcloud.io/summary/overall?id=engineering-digest-rs_journalapp&branch=master`
+
 ## ✅ Summary
 
 - Build → `mvn clean package`
