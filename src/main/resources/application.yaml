@@ -12,4 +12,4 @@ logging:
   level:
     net:
       engineeringdigest:
-        journalApp: DEBUG
+        journalApp: INFO
