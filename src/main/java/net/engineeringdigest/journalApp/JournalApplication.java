@@ -5,6 +5,7 @@ import com.mongodb.client.MongoClients;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication()
 public class JournalApplication {
@@ -16,5 +17,10 @@ public class JournalApplication {
     @Bean
     public MongoClient mongoClient() {
         return MongoClients.create("mongodb+srv://rohitsharmamgs_db_user:kPKR3q6fZvbOKtjV@cluster0.ywya3qw.mongodb.net/journaldb?retryWrites=true&w=majority");
+    }
+
+    @Bean
+    public RestTemplate getRestTemplate () {
+        return new RestTemplate();
     }
 }
