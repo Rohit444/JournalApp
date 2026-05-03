@@ -1,11 +1,13 @@
 package net.engineeringdigest.journalApp.controller;
 
+import net.engineeringdigest.journalApp.entity.City;
 import net.engineeringdigest.journalApp.entity.User;
 import net.engineeringdigest.journalApp.repository.UserRepository;
 import net.engineeringdigest.journalApp.service.UserService;
 import net.engineeringdigest.journalApp.service.WeatherService;
 import net.engineeringdigest.journalApp.weather.response.WeatherResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -24,6 +26,9 @@ public class UserController {
 
     @Autowired
     private WeatherService weatherService;
+
+    @Value("${city}")
+    private String city;
 
     @PutMapping
     public ResponseEntity<?> updateUser(@RequestBody User user) {
@@ -47,12 +52,23 @@ public class UserController {
     @GetMapping
     public ResponseEntity<?> greeting() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        WeatherResponse response = weatherService.getWeather("Mumbai");
+        WeatherResponse response = weatherService.getWeather(city);
         String greeting = "";
         if (response != null) {
-            greeting = " Today's outside temperature feels like "+response.getCurrent().getTemperature();
+            greeting = " Today's " + city + "'s temperature feels like " + response.getCurrent().getTemperature();
         }
-        return new ResponseEntity<>(" Hi "+authentication.getName()+greeting,HttpStatus.OK);
+        return new ResponseEntity<>(" Hi " + authentication.getName() + greeting, HttpStatus.OK);
+    }
+
+    @PostMapping("city")
+    public ResponseEntity<?> greetingAppByCity(@RequestBody City city) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        WeatherResponse response = weatherService.getWeather(city.getCityName());
+        String greeting = "";
+        if (response != null) {
+            greeting = " Today's " + city.getCityName() + " temperature feels like " + response.getCurrent().getTemperature();
+        }
+        return new ResponseEntity<>(" Hi " + authentication.getName() + greeting, HttpStatus.OK);
     }
 
 }
