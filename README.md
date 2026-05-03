@@ -1,5 +1,9 @@
 # 📦 Application Setup & Guide
 
+## Reference
+
+This application follows the Spring Boot tutorial:
+- [YouTube Tutorial](https://www.youtube.com/watch?v=1993zSY5UBI&list=PLA3GkZPtsafacdBLdd3p1DyRd5FGfr3Ue&index=1)
 ---
 
 ## 🚀 Running the Application
