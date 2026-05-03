@@ -13,3 +13,7 @@ logging:
     net:
       engineeringdigest:
         journalApp: INFO
+
+weather:
+  forecast:
+    api-key: 68824960efe95b82107f2e9913f48d11
